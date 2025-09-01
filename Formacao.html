@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formação • Alessandro Almeida de Souza</title>
+  <!-- Conexão com o arquivo de estilos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!--
+    GRID PRINCIPAL DA PÁGINA:
+    - 3 linhas: header (topo), main (conteúdo), footer (rodapé)
+  -->
+  <div class="page">
+
+    <!-- TOPO DA PÁGINA-->
+    <header class="site-header">
+      <nav class="main-nav" aria-label="Navegação principal">
+         <ul>
+          <li><a href="Sobre.html">Sobre</a></li>
+          <li><a href="Formacao.html">Formação Acadêmica</a></li>
+          <li><a href="Portifolio.html">Portifólio</a></li>
+          <li><a href="Contato.html">Contato</a></li>
+      </ul>
+      </nav>
+      </nav>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="sobre" class="hero">
+      <!--
+        - Imagem do fundo
+
+      -->
+      <img
+        class="hero-bg"
+        src="imagem/foto02.jpg"
+        loading="eager"
+      />
+
+      <!--
+        GRID INTERNO DA SEÇÃO:
+        - 2 colunas: texto à esquerda e área vazia à direita (mantém equilíbrio visual)
+      -->
+      <section class="hero-grid">
+        <div class="hero-text">
+          <h2>Formação Educacional</h2>
+          <!-- Lista não ordenada com as informações -->
+            <ul>
+              <li>Ensino Médio Completo</li>
+              <br>
+              <li>Tecnologia em Segurança de Trabalho - Concluído</li>
+              <br>
+              <li>Analista e Desenvolvimento de Sistema - Em andamento</li>
+              <br>
+              <h2>Idiomas</h2>
+              <li>Inglês – Nível Intermediário</li>
+              <br>
+              <li>Espanhol – Nível Intermediário</li>
+            </ul>
+         </div>
+        <!-- Coluna DIREITA: vazia de propósito (continuidade da imagem) -->
+        <div class="hero-right" aria-hidden="true"></div>
+      </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="site-footer">
+      <p class="footer-note">Conteúdo para fins acadêmicos</p>
+    </footer>
+
+  </div>
+</body>
+</html>

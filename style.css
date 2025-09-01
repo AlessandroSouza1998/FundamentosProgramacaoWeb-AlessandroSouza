@@ -1,0 +1,352 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif; /* fonte simples e comum */
+  color: #ffffff;                            /* texto claro por cima do fundo escuro/foto */
+  background: #0a2b36;                       /* tom escuro para header/footer */
+}
+
+/* =========================================================
+   GRID PRINCIPAL DA PÁGINA
+   - 3 linhas: header | main | footer
+   ========================================================= */
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 64px 1fr 64px;
+}
+
+/* =========================================================
+   HEADER (topo)
+   ========================================================= */
+.site-header {
+  background: #072732;           /* azul petróleo escuro (paleta semelhante à referência) */
+  display: flex;
+  justify-content: center;     /* menu alinhado no meio */
+  align-items: center;
+  padding: 0 16px;
+}
+
+/* Navegação simples */
+.main-nav ul {
+  list-style: none;              /* remove marcadores */
+  display: flex;
+  gap: 28px;                     /* espaço entre itens do menu */
+  margin: 0;
+  padding: 0;
+}
+.main-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: opacity .2s ease;  /* efeito suave ao passar o mouse */
+}
+.main-nav a:hover { opacity: .8; }
+
+/* =========================================================
+   SEÇÃO "HERO" (área da foto + texto)
+   - A imagem está no HTML (classe .hero-bg) e é posicionada pelo CSS
+   ========================================================= */
+.hero {
+  position: relative;            /* cria contexto para posicionar a imagem */
+  display: grid;                 /* permite usar grid interno */
+  overflow: hidden;              /* corta sobras da imagem se necessário */
+  min-height: 72vh;              /* altura aproximada da referência */
+}
+
+/* Imagem de fundo colocada no HTML */
+.hero-bg {
+  position: absolute;            /* ocupa todo o contêiner .hero */
+  inset: 0;                      /* atalho para top/right/bottom/left = 0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* a imagem preenche sem deformar */
+  object-position: center;       /* centraliza o enquadramento */
+  z-index: 0;                    /* fica por trás do conteúdo */
+  filter: none;                  /* sem filtros (overlay será no bloco de texto) */
+}
+
+/* Grid interno: 2 colunas (texto | vazio) */
+.hero-grid {
+  position: relative;            /* mantém o conteúdo acima da imagem */
+  z-index: 1;                    /* garante que o texto apareça sobre a foto */
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* proporção parecida com a imagem enviada */
+  padding: 24px 16px;            /* respiro interno */
+  min-height: inherit;           /* herda a altura da seção */
+}
+
+/* Bloco de texto com overlay para legibilidade sobre a foto */
+.hero-text {
+  /* overlay escuro com leve gradiente (melhora leitura do texto) */
+  background: linear-gradient(180deg, rgba(7, 39, 50, 0.85) 0%, rgba(7, 39, 50, 0.55) 100%);
+  padding: 48px 32px;            /* margem interna confortável */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;       /* centraliza verticalmente o conteúdo */
+  gap: 16px;                     /* espaço entre título e parágrafos */
+}
+
+/* Título grande e forte */
+.hero-text h1 {
+  margin: 0 0 8px 0;
+  font-size: clamp(28px, 3.2vw, 40px);  /* responsivo: cresce em telas maiores */
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+/* Parágrafos do texto de apresentação */
+.hero-text p {
+  margin: 0;
+  max-width: 58ch;    
+  font-size: clamp(14px, 1.6vw, 18px);
+  line-height: 1.55;
+  text-shadow: 0 1px 6px rgba(0,0,0,.25); /* leve sombra no texto para contraste */
+}
+
+/* Coluna direita vazia: mantém continuidade visual da imagem */
+.hero-right {
+  /* traço sutil como “divisor” (opcional) */
+  box-shadow: inset 1px 0 rgba(255,255,255,0.06);
+}
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+.site-footer {
+  background: #0a2b36;
+  display: grid;
+  place-items: center;           /* centraliza o conteúdo do rodapé */
+  padding: 12px 16px;
+}
+.footer-note {
+  margin: 0;
+  font-size: 14px;
+  color: #d2e6ef;                /* tom claro suave */
+}
+
+/* =========================================================
+   RESPONSIVIDADE (celular e tablets pequenos)
+   ========================================================= */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;  /* vira 1 coluna no mobile */
+    padding: 12px;
+  }
+  .hero-text {
+    padding: 28px 16px;          /* reduz o “respiro” para telas pequenas */
+  }
+
+  /* Menu continua simples; em projetos maiores pode virar “hambúrguer” */
+}
+
+.hero-text ul {
+  margin: 0;
+  padding-left: 20px; /* dá um espacinho pros marcadores */
+  max-width: 58ch;    
+  font-size: clamp(14px, 1.6vw, 20px);
+  line-height: 1.55;
+  text-shadow: 0 1px 6px rgba(0,0,0,.25); /* leve sombra no texto para contraste */
+}
+
+.hero-text ul li {
+  margin-bottom: 6px; /* espaço entre os itens */
+  }
+
+
+  /* ================================================
+   PAGINA DE CONTATO
+   ================================================ */
+.contact-section {
+  display: grid;
+  place-items: center;     /* centraliza o conteúdo */
+  padding: 32px 16px;
+  background: #f4f4f4;     /* fundo claro para contraste */
+  color: #333;
+}
+
+.contact-section h1 {
+  margin-bottom: 24px;
+  font-size: 28px;
+  color: #072732;
+  text-align: center;
+}
+
+/* Formulário em grid */
+.contact-form {
+  display: grid;
+  gap: 16px;               /* espaço entre os campos */
+  width: 100%;
+  max-width: 500px;        /* largura máxima */
+  background: #fff;        /* fundo branco do formulário */
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Labels */
+.contact-form label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Inputs e textarea */
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: none;            /* evita redimensionar a textarea */
+}
+
+/* Botão */
+.contact-form button {
+  background: #072732;     /* verde padrão */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.contact-form button:hover {
+  opacity: 0.85;
+}
+
+/* =========================================================
+   SEÇÃO PORTFÓLIO
+   ========================================================= */
+.hero {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  min-height: 72vh;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0; /* fica atrás */
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1; /* conteúdo acima da imagem */
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* texto | vazio */
+  padding: 24px 16px;
+  min-height: inherit;
+}
+
+.hero-text {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 39, 50, 0.85) 0%,
+    rgba(7, 39, 50, 0.55) 100%
+  );
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  color: #fff;
+   min-height: 100%;
+}
+
+.hero-text h1 {
+  margin: 0 0 8px 0;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.hero-text p {
+  margin: 0;
+  max-width: 58ch;
+  font-size: clamp(14px, 1.6vw, 18px);
+  line-height: 1.55;
+  text-shadow: 0 1px 6px rgba(0,0,0,.25);
+}
+
+.hero-right {
+  box-shadow: inset 1px 0 rgba(255,255,255,0.06);
+}
+
+/* =========================================================
+   CARD DO PORTFÓLIO
+   ========================================================= */
+.projects-grid {
+  grid-column: 1 / -1;
+  margin-top: 16px;
+  display: grid;
+  justify-content: center;     /* centraliza o card */
+  grid-template-columns: 1fr;  /* só uma coluna */
+  max-width: 400px;            /* largura máxima do card */
+  width: 100%;
+}
+
+.card {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  display: grid;
+  grid-template-rows: 160px auto; /* thumb + corpo */
+}
+
+/* miniatura*/
+.card-thumb {
+  background: linear-gradient(135deg, #072732, #0a2b36);
+}
+
+/* corpo do card */
+.card-body {
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.card-body h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #072732;
+}
+
+.card-body p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #334155;
+}
+
+/* botões/links */
+.card-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn {
+  background: #072732;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: inline-block;
+  transition: opacity .2s ease, transform .02s ease-in;
+
+}
+.btn:hover { opacity: 0.9; }
+.btn:active { transform: scale(0.995); }
